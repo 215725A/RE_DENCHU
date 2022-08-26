@@ -1,0 +1,379 @@
+<StartScene>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            id: label1
+            size_hint_y: 1.5
+            font_size: 70
+            text: 'DENCHU QUEST'
+        
+        BoxLayout:
+            
+            Button:
+                id: button1
+                size_hint_x: 1
+                font_size: 60
+                text: 'Game Start'
+                on_press: root.PressStart()
+            
+            Button:
+                id: button2
+                size_hint_x: 1
+                font_size: 60
+                text: 'Game Quit'
+                on_press: app.stop()
+
+
+<SelectScene>:
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            id: label2
+            size_hint_y: 0.5
+            text: 'デンチュウを選んでください'
+        
+        BoxLayout:
+            Image:
+                source: "./images/denchu_red.png"
+                allow_stretch: True
+                kepp_ratio: True
+            
+            Image:
+                source: "./images/denchu_green.png"
+                allow_stretch: True
+                kepp_ratio: True
+
+            Image:
+                source: "./images/denchu_yellow.png"
+                allow_stretch: True
+                kepp_ratio: True
+        
+        BoxLayout:
+            Button:
+                id: RED_DENCHU
+                size_hint_x: 1
+                size_hint_y: 0.82
+                font_size: 40
+                text: '赤色デンチュウ'
+                on_press: root.PressRed()
+
+            Button:
+                id: GREEN_DENCHU
+                size_hint_x: 1
+                size_hint_y: 0.82
+                font_size: 40
+                text: '緑色デンチュウ'
+                on_press: root.PressGreen()
+            
+            Button:
+                id: YELLOW_DENCHU
+                size_hint_x: 1
+                size_hint_y: 0.82
+                font_size: 40
+                text: '黄色デンチュウ'
+                on_press: root.PressYellow()
+            
+        Button:
+            id: BACK
+            size_hint_y: 0.3
+            font_size: 40
+            text: '戻る'
+            on_press: root.PressBack()
+
+
+<DecideRed>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            size_hint_y: 0.5
+            text: 'このデンチュウを選ぶ?'
+        
+        Image:
+            source: "./images/denchu_red.png"
+            allow_stretch: True
+            kepp_ratio: True
+        
+        Label:
+            size_hint_y: 0.5
+            text: '赤色デンチュウ: 緑色のモンスターに強く、黄色のモンスターに弱い'
+        
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "このデンチュウに決めた!"
+            on_press: root.PressDecide()
+        
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "選び直す"
+            on_press: root.PressBack()
+
+
+<DecideGreen>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            size_hint_y: 0.5
+            text: 'このデンチュウを選ぶ?'
+        
+        Image:
+            source: "./images/denchu_green.png"
+            allow_stretch: True
+            kepp_ratio: True
+        
+        Label:
+            size_hint_y: 0.5
+            text: '緑色デンチュウ: 黄色のモンスターに強く、赤色のモンスターに弱い'
+        
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "このデンチュウに決めた!"
+            on_press: root.PressDecide()
+        
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "選び直す"
+            on_press: root.PressBack()
+
+
+<DecideYellow>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            size_hint_y: 0.5
+            text: 'このデンチュウを選ぶ?'
+        
+        Image:
+            source: "./images/denchu_yellow.png"
+            allow_stretch: True
+            kepp_ratio: True
+        
+        Label:
+            size_hint_y: 0.5
+            text: '黄色デンチュウ: 赤色のモンスターに強く、緑色のモンスターに弱い'
+
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "このデンチュウに決めた!"
+            on_press: root.PressDecide()
+        
+        Button:
+            size_hint_x: 1
+            size_hint_y: 0.665
+            font_size: 40
+            text: "選び直す"
+            on_press: root.PressBack()
+
+
+<BattleScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            size_hint_y: 2.5
+            source: root.getSceneImage()
+            allow_stretch: True
+            kepp_ratio: True
+        
+        BoxLayout:
+            Label:
+                id: labelHP1
+                size_hint_y: 1
+                text: root.getDenchuName() + "のHP: " + root.getDenchuHP() + "\n" + root.getDenchuName() + "の攻撃力: " + root.getDenchuPower()
+
+            Label:
+                id: labelHP2
+                size_hint_y: 1
+                text: root.getOpponentName() + "のHP: " + root.getOpponentHP() + "\n" + root.getOpponentName() + "の攻撃力: " + root.getOpponentPower() 
+        
+        Button:
+            size_hint_y: 1.3
+            text: "戦う" 
+            on_press:
+                root.PressBattle()
+                labelHP1.text = root.getDenchuName() + "のHP: " + root.getDenchuHP() + "\n" + root.getDenchuName() + "の攻撃力: " + root.getDenchuPower()
+                labelHP2.text = root.getOpponentName() + "のHP: " + root.getOpponentHP() + "\n" + root.getOpponentName() + "の攻撃力: " + root.getOpponentPower() 
+
+        BoxLayout:
+            Button:
+                size_hint_x: 1
+                text: "アイテム"
+                on_press: root.PressItem()
+
+            Button:
+                size_hint_x: 1
+                text: "逃げる"
+                on_press: root.PressEscape()
+
+
+<SkillScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            size_hint_y: 3.05
+            source: root.getSceneImage()
+            allow_stretch: True
+            kepp_ratio: True
+
+        Label:
+            size_hint_y: 1.2
+            text: "技を選択してください"
+
+        BoxLayout:
+            Button:
+                size_hint_y: 1
+                text: root.getSkillName1()
+                on_press: root.PressSkill1()
+
+            Button:
+                size_hint_y: 1
+                text: root.getSkillName2()
+                on_press: root.PressSkill2()
+
+        BoxLayout:
+            Button:
+                size_hint_y: 1
+                text: root.getSkillName3()
+                on_press: root.PressSkill3()
+            
+            Button:
+                size_hint_y: 1
+                text: root.getSkillName4()
+                on_press: root.PressSkill4()
+
+        Button:
+            size_hint_y: 0.8
+            text: "戻る"
+            on_press: root.PressBack()
+
+
+<ItemScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            size_hint_y: 2.27
+            source: root.getSceneImage()
+            allow_stretch: True
+            kepp_ratio: True
+
+        Label:
+            size_hint_y: 0.99
+            text: "どのアイテムを使用する?"
+
+        BoxLayout:
+            Button:
+                size_hint_y: 1.1
+                text: root.getItemName1()
+                on_press: root.PressItem1()
+
+            Button:
+                size_hint_y: 1.1
+                text: root.getItemName2()
+                on_press: root.PressItem2()
+        
+        Button:
+            text: "戻る"
+            on_press: root.PressBack()
+
+
+<EnemyScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Image:
+            size_hint_y: 1.5
+            source: root.getSceneImage()
+            allow_stretch: True
+            kepp_ratio: True
+
+        Label:
+            size_hint_y: 0.6
+            text: root.getOpponentName() + "の攻撃!"
+        
+        Button:
+            size_hint_y: 1.37
+            text: "自分のターンへ"
+            on_press: root.PressBattle()
+
+
+
+<EscapeScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            text: "You Lose"
+            font_size: 60
+            color: [1, 0, 0, 1]
+
+        Label:
+            text: "戦闘から離脱した"
+
+        Button:
+            size_hint_y: 1.3
+            text: "ゲームを終了する"
+            on_press: app.stop()
+
+
+<LoseScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            text: "You Lose"
+            font_size: 60
+            color: [1, 0, 0, 1]
+
+        Label:
+            text: root.getDenchuName() + "は倒れた"
+        
+        Button:
+            size_hint_y: 1.3
+            text: "ゲームを終了する"
+            on_press: app.stop()
+
+
+<WinScene>
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.size
+
+        Label:
+            text: "You Win"
+            font_size: 60
+            color: [1, 1, 0, 1]
+
+        Label:
+            text: root.getOpponentName() + "を倒した"
+
+        Button:
+            size_hint_y: 1.3
+            text: "ゲームを終了する"
+            on_press: app.stop()
