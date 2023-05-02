@@ -1,7 +1,8 @@
 # RE_DENCHU
-# kivyを使用したターン制バトルゲーム
+## kivyを使用したターン制バトルゲーム
 
-kivyのインストール手順
+## ゲームを遊ぶ前にkivyのインストールが必要です
+### kivyのインストール手順
 
 % cd ソースを置いているディレクトリ
 % /usr/bin/python3 -m venv venv
